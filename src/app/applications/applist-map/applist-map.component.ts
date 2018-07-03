@@ -46,7 +46,6 @@ export class ApplistMapComponent implements OnInit, OnChanges, OnDestroy {
   @Input() allApps: Array<Application> = []; // from applications component
   @ViewChild('applist') applist;
 
-  public loading = true; // for spinner
   private map: L.Map = null;
   private appsFG: L.FeatureGroup[] = []; // list of FGs (containing layers) for each app
   private markers: L.Marker[] = []; // list of markers
@@ -350,8 +349,6 @@ export class ApplistMapComponent implements OnInit, OnChanges, OnDestroy {
     // this.map.eachLayer(() => n++);
     // console.log('# map layers =', n);
     // console.log('# marker layers =', this.markersCG.getLayers().length);
-
-    this.loading = false;
   }
 
   private onMarkerClick(...args: any[]) {

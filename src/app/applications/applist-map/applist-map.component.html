@@ -1,9 +1,5 @@
 <div class="applist-map">
 
-    <div class="spinner-container" *ngIf="loading">
-        <div class="spinner-new rotating"></div>
-    </div>
-
     <app-applist-filters class="app-filters" [allApps]="allApps" (updateMatching)="onUpdateMatching($event)"></app-applist-filters>
 
     <div class="pane2">
