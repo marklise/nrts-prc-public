@@ -67,6 +67,8 @@ export class ApplistMapComponent implements OnInit, OnChanges, OnDestroy {
   private doUpdateResults: boolean = null;
   private ngUnsubscribe: Subject<boolean> = new Subject<boolean>();
 
+  private defaultBounds = L.latLngBounds([48, -139], [60, -114]); // all of BC
+
   constructor(
     private route: ActivatedRoute,
     private searchService: SearchService,
@@ -229,7 +231,6 @@ export class ApplistMapComponent implements OnInit, OnChanges, OnDestroy {
       } else {
         // invalid bounds, or bounds don't intersect - make item hidden
         const app = _.find(this.allApps, { tantalisID: fg.dispositionId });
-        // console.log('hidden item, app =', app);
         if (app) { app.isVisible = false; }
       }
     }
@@ -251,6 +252,8 @@ export class ApplistMapComponent implements OnInit, OnChanges, OnDestroy {
     const globalBounds = globalFG.getBounds();
     if (globalBounds && globalBounds.isValid()) {
       this.map.fitBounds(globalBounds, this.fitBoundsOptions);
+    } else {
+      this.map.fitBounds(this.defaultBounds, this.fitBoundsOptions);
     }
   }
 
@@ -342,6 +345,8 @@ export class ApplistMapComponent implements OnInit, OnChanges, OnDestroy {
     const globalBounds = globalFG.getBounds();
     if (globalBounds && globalBounds.isValid()) {
       this.map.fitBounds(globalBounds, this.fitBoundsOptions);
+    } else {
+      this.map.fitBounds(this.defaultBounds, this.fitBoundsOptions);
     }
 
     // DEBUGGING
