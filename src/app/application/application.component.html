@@ -78,6 +78,10 @@
             <label>Agency</label>
             <p class="value">Crown Lands Allocation</p>
           </div>
+          <div class="col-12" *ngIf="application.features && application.features.length == 0">
+            <label>Legal Description</label>
+            <p class="value" [innerHTML]="(application.legalDescription | newlines) || '-'"></p>
+          </div>
         </section>
 
         <section class="feature-item row" *ngFor="let feature of application.features">

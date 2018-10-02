@@ -119,8 +119,10 @@ export class ApplicationService {
             .then(features => {
               application.features = features;
 
-              // calculate Total Area (hectares) from all features
-              application.areaHectares = 0;
+              // calculate Total Area (hectares) from all features, only if there are features present
+              if (application.features && application.features.length > 0) {
+                application.areaHectares = 0;
+              }
               _.each(application.features, function (f) {
                 if (f['properties']) {
                   application.areaHectares += f['properties'].TENURE_AREA_IN_HECTARES;
@@ -221,8 +223,10 @@ export class ApplicationService {
           .then(features => {
             application.features = features;
 
-            // calculate Total Area (hectares) from all features
-            application.areaHectares = 0;
+            // calculate Total Area (hectares) from all features, only if there are features present
+            if (application.features && application.features.length > 0) {
+              application.areaHectares = 0;
+            }
             _.each(application.features, function (f) {
               if (f['properties']) {
                 application.areaHectares += f['properties'].TENURE_AREA_IN_HECTARES;
