@@ -104,7 +104,16 @@ export class ApiService {
       'postID',
       'publishDate',
       'region',
-      'tantalisID'
+      'tantalisID',
+      'purpose',
+      'subpurpose',
+      'type',
+      'subtype',
+      'location',
+      'status',
+      'tenureStage',
+      'businessUnit',
+      'areaHectares'
     ];
     let queryString = 'application?fields=';
     _.each(fields, function (f) {

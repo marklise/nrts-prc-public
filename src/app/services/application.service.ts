@@ -114,6 +114,9 @@ export class ApplicationService {
 
         // now get the referenced data (features)
         applications.forEach((application, i) => {
+          // derive application status for app list display
+          application['appStatus'] = this.getStatus(application);
+
           promises.push(this.searchService.getByDTID(application.tantalisID)
             .toPromise()
             .then(features => {
@@ -140,9 +143,6 @@ export class ApplicationService {
                 application.location = application.features[0].properties.TENURE_LOCATION;
                 application.businessUnit = application.features[0].properties.RESPONSIBLE_BUSINESS_UNIT;
               }
-
-              // derive application status for app list display
-              application['appStatus'] = this.getStatus(application);
             })
           );
         });
